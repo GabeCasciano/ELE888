@@ -22,5 +22,17 @@
 % $x_2 = [3.3, 4.4, 5.0, 5.7, 6.3]$.
 
 %% Question 4:
-% Arrive at a optimal threshold ($T_h1$) that seperates classes 
+% Arrive at a optimal threshold ($T_{h1}$) that seperates classes $\omega_1$
+% and $\omega_2$ (theoretically or experimentally). Justify your results.
+
+%% Question 5:
+% Suggest how $T_{h1}$ would be affected if a higher penalty is associated
+% with classifying class $\omega_2$ as a class $\omega_1$ - show with
+% epxeriment.
+
+%% Question 6:
+% Adjust your program to accept _Sepal Length_ as the discriminating
+% feature $g(x_1)$. Suggest which of the two features ($x_1$, $x_2$) might
+% be a better choice for sperating the two classes $\omega_1$ and
+% $\omega_2$. Jutify.
 
