@@ -31,7 +31,7 @@ for i = 1 : length(trainingSet)
     %the following logic is being used to determine whether or not the
     %correct decision has been made
     if((trainingSet(i,6) > threshold_x1 && trainingSet(i,5) == 1) || (trainingSet(i,6) < threshold_x1 && trainingSet(i,5) == 2))
-       error_x1 = error_x1 + 1
+       error_x1 = error_x1 + 1;
     end
     if((trainingSet(i,7) > threshold_x2 && trainingSet(i,5) == 1) || (trainingSet(i,6) < threshold_x2 && trainingSet(i,5) == 2))
       error_x2 = error_x2 + 1;
@@ -39,6 +39,6 @@ for i = 1 : length(trainingSet)
 end
 
 %Here the percent error is being calculated
-error_x1 = 1 - error_x1 / length(trainingSet)
-error_x2 = 1 - error_x2 / length(trainingSet)
+error_x1 = 1 - error_x1 / length(trainingSet);
+error_x2 = 1 - error_x2 / length(trainingSet);
 

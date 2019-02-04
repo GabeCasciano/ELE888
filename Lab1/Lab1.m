@@ -12,10 +12,13 @@
 % The training set being used is the iris training set.
 %% Part 1
 %% Question 1: 
-% Using a singal discriminant function $g(x_2)$, design a 2 class
+% Using a single discriminant function $g(x_2)$, design a 2 class
 % minimum-error-rate classifier (dichtomizer) from the given data, to
 % classift *IRIS* samples into to either _Iris Setosa_ or _Iris 
 % Versicolor_, according to the feature: _Sepal Width_.
+
+%% 
+% This is a 2 class, single discriminant function classifier.
 
 %% Question 2:
 % Using the shell program _lab1.m_, write a program that will take
@@ -79,7 +82,7 @@ for i = 1 : length(trainingSet)
     %the following logic is being used to determine whether or not the
     %correct decision has been made
     if((trainingSet(i,6) > threshold_x2 && trainingSet(i,5) == 1) || (trainingSet(i,6) < threshold_x2 && trainingSet(i,5) == 2))
-       error_x2 = error_x2 + 1;
+       error_x2 = error_x2 - 1;
     end
 end
 %%
@@ -102,8 +105,38 @@ fprintf("Percent error, x2: %.2f%c", (error_x2 * 100), '%');
 % Suggest how $T_{h1}$ would be affected if a higher penalty is associated
 % with classifying class $\omega_2$ as a class $\omega_1$ - show with
 % experiment.
+%%
+% If a larger penalty is associated with classifying a _Iris Versicolor_ as
+% an _Iris Setosa_ the Threshold, $T_{h_1} would be forced to shift down
+% below 0. As it shifts down, you would be able to notice that the
+% classifiers error rate relative to _Iris Setosa_ is going up, but
+% relative to _Iris Versicolor_ it is going down. 
+%%
+% By adjusting the classifier to be penalized more for classifying $\omega_2$ as $\omega_1$
+% more _Iris Versicolor_ flowers are going to be classified as an _Irirs
+% Setosa_.
+%%
+% To demonstrate this the threshold is going to bemore biased in the
+% direction of $\omega_2$ so that it is less likely to classify an
+% $\omega_2$ as an $\omega_1$. 
 
+error_x2 = 0;
+threshold = [-.2,-.4,-.5,-.6];
+for j = 1 : length(threshold)
+    for i = 1 : length(trainingSet)
+        [posterior_x2(i,:), g_x2(i,:)]= lab1_1(trainingSet(i, 2), trainingSet);
+        trainingSet(i, 6) = g_x2(i);
 
+        if((trainingSet(i,6) < threshold(j) && trainingSet(i,5) == 1) || (trainingSet(i,6) > threshold(j) && trainingSet(i,5) == 2))
+           error_x2 = error_x2 - 1;
+        end
+    end
+    
+error(j, :) = 1 - error_x2 / length(trainingSet);
+fprintf("Percent error, x2: %.2f%c based on Threshold value: %.2f \n", (error(j) * 100), '%', threshold(j));
+end
+
+plot(threshold, error);
 %% Question 6:
 % Adjust your program to accept _Sepal Length_ as the discriminating
 % feature $g(x_1)$. Suggest which of the two features ($x_1$, $x_2$) might
@@ -111,14 +144,17 @@ fprintf("Percent error, x2: %.2f%c", (error_x2 * 100), '%');
 % $\omega_2$. Jutify.
 
 %%
-% For the adjusted program please refer to the file *lab1_2.m*, as well as
-% the full calculation for the figures included below.
+% For the adjusted program please refer to the file *lab1_2.m*, refer to
+% the file called *lab1_3.m* for the full calculations.
 %%
 %%
 % Assuming $T_{h_2} = 0$ aswell (based on experimental evidence). If
 % $error_{x_1}$ is calculated the same as $error_{x_2}$ for their
 % respective threshold values then, based on their precent errors:
-fprintf("Percent error, x1: %.2f%c", (error_x1 * 100), '%');
+
+run Lab1_3;
+
+fprintf("Percent error, x1: %.2f%c \n", (error_x1 * 100), '%');
 fprintf("Percent error, x2: %.2f%c", (error_x2 * 100), '%');
 %%
 % It is clear that feature $x_1$ has a lower percent error making it the
