@@ -37,15 +37,15 @@ Threshold_x1 = 0;
 
 for i = 1 : length(x)
     [posterior(i,:), discriminant(i,:)] = lab1_1(x(i), trainingSet);
-    fprintf("For x(%d), value of: %.1f \n", i, x(i));
-    fprintf("Posteriors: %f, %f \n", posterior(i,1), posterior(i,2));
-    fprintf("Discriminant: %f \n", discriminant(i));
+    fprintf('For x(%d), value of: %.1f \n', i, x(i));
+    fprintf('Posteriors: %f, %f \n', posterior(i,1), posterior(i,2));
+    fprintf('Discriminant: %f \n', discriminant(i));
     if(Threshold_x1 < discriminant(i,:))
-        fprintf("Iris-setosa");
+        fprintf('Iris-setosa');
     else
-        fprintf("Iris-versicolor");
+        fprintf('Iris-versicolor');
     end
-    fprintf("\n \n");
+    fprintf('\n \n');
 end
 
 %% Question 4:
