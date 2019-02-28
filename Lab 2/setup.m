@@ -23,3 +23,14 @@ for i = 1 : 50
    datasetB(i,:) = [dataset(i+50,2), dataset(i+50,3), dataset(i+50,5)];
    datasetC(i,:) = [dataset(i+100,2), dataset(i+100,3), dataset(i+100,5)];
 end
+
+%Splitting the datasets into their required partitions
+datasetAB = [datasetA; datasetB];
+ABtraining = [datasetAB(1:15,1:3); datasetAB(86:100,1:3)];
+ABtesting = datasetAB(16:85, 1:3);
+datasetBC = [datasetB; datasetC];
+BCtraining = [datasetBC(1:15,1:3); datasetBC(86:100,1:3)];
+BCtesting = datasetBC(16:85, 1:3);
+
+%Other Variables
+err = 0;

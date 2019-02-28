@@ -1,0 +1,7 @@
+function [x1, x2] = decisionBoundary(weight, feature)
+%DECISIONBOUNDARY Summary of this function goes here
+%   Detailed explanation goes here
+    
+end
+
+
