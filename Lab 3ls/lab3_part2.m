@@ -100,16 +100,20 @@ boundary2 = slope2 * x_axis+ y_intercept2;
 
 %decision in x domain
 figure(1);
-plot(X1(1:59),X2(1:59),'m.'); 
-hold
-plot(X1(60:107),X2(60:107),'k.');
-plot(x_axis, boundary1,'k')
-plot(x_axis, boundary2, 'm')
+scatter(X1(1:59),X2(1:59),'m.');
+hold on
+scatter(X1(60:107),X2(60:107),'k.');
+plot(x_axis, boundary1, 'k');
+
+plot(x_axis, boundary2, 'm');
+hold off
+
+
 xlabel('x_1');
 ylabel('x_2');
 legend('W1','W2','Boundary 1', 'Boundary 2');
 
-figure(2)
+figure(3)
 plot(Jp)
 xlabel('Epoch'); ylabel('Error Rate');
 
